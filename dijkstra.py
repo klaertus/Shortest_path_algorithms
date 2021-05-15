@@ -5,7 +5,7 @@ import numpy as np
 test_matrix = np.array([
                 #A,B,C,D,E,F,G,H,I,J
                 [0,5,1,2,np.NAN,np.NAN,np.NAN,np.NAN,np.NAN,np.NAN], #A
-                [5,0,3,np.NAN,1,np.NAN,3,np.NAN,np.NAN,np.NAN], #B
+                [5,0,3,np.NAN,5,np.NAN,3,np.NAN,np.NAN,np.NAN], #B
                 [1,3,0,1,4,1,np.NAN,np.NAN,np.NAN,np.NAN], #C
                 [2,np.NAN,1,0,np.NAN,1,np.NAN,np.NAN,3,np.NAN], #D
                 [np.NAN,5,4,np.NAN,0,3,5,5,np.NAN,np.NAN], #E
