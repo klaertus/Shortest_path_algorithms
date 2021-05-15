@@ -53,9 +53,14 @@ def dijkstra(matrix):
 
             x = D.index(min(D))
             temp = []
+
             if x in S:
-                temp = [i for i in range(0,len(D)) if i not in S]
-                x = min(temp)
+                temp = [D[i] for i in range(0,len(D)) if i not in S]
+
+                # Find all indexes of minimum distance
+                q = [index for index, value in enumerate(D) if value == min(temp)]
+
+                x = int([q[index] for index, value in enumerate(q) if value not in S][0])
 
             S.append(x)
 
@@ -66,7 +71,9 @@ def dijkstra(matrix):
 
         output_matrix.append(D)
 
+
     return output_matrix
 
 
 print(dijkstra(test_matrix))
+
