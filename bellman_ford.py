@@ -15,7 +15,7 @@ test_matrix = np.array([
                 ])
 
 
-def bellan_ford(matrix):
+def bellman_ford(matrix):
 
     def neighbors(x):
         return [i for i in range(0,len(matrix[x])) if (not np.isnan(matrix[x][i]) and matrix[x][i] != 0)]
