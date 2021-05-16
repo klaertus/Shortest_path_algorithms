@@ -10,12 +10,12 @@ test_matrix = np.array([
                 [np.NAN,np.NAN,1,1,3,0,np.NAN,5,1,np.NAN], #F
                 [np.NAN,3,np.NAN,np.NAN,5,np.NAN,0,4,np.NAN,1], #G
                 [np.NAN,np.NAN,np.NAN,np.NAN,5,5,4,0,5,2], #H
-                [np.NAN,np.NAN,np.NAN,3,np.NAN,1,np.NAN,5,0,-5], #I
-                [np.NAN,np.NAN,np.NAN,np.NAN,np.NAN,np.NAN,1,2,-5,0]  #J
+                [np.NAN,np.NAN,np.NAN,3,np.NAN,1,np.NAN,5,0,5], #I
+                [np.NAN,np.NAN,np.NAN,np.NAN,np.NAN,np.NAN,1,2,5,0]  #J
                 ])
 
 
-def bellman_ford(matrix):
+def bellan_ford(matrix):
 
     def neighbors(x):
         return [i for i in range(0,len(matrix[x])) if (not np.isnan(matrix[x][i]) and matrix[x][i] != 0)]
