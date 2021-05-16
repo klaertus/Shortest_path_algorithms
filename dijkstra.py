@@ -71,7 +71,7 @@ def dijkstra(matrix):
         output_matrix.append(D)
 
 
-    return output_matrix
+    return np.array(output_matrix)
 
 
 print(dijkstra(test_matrix))
