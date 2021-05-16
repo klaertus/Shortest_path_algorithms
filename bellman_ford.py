@@ -1,5 +1,5 @@
 import numpy as np
-
+import dijkstra
 
 
 test_matrix = np.array([
@@ -17,7 +17,7 @@ test_matrix = np.array([
                 ])
 
 
-def dijkstra(matrix):
+def bellan_ford(matrix):
 
     def neighbors(x):
         return [i for i in range(0,len(matrix[x])) if (not np.isnan(matrix[x][i]) and matrix[x][i] != 0)]
@@ -25,53 +25,47 @@ def dijkstra(matrix):
     def lengh(x,y):
         return matrix[x][y]
 
+    def get_key(dict, val):
+        temp = []
+        for key, value in dict.items():
+            if val == value:
+                temp.append(list(key))
+
+        return temp
+
     # Initialization
     matrix = np.squeeze(np.asarray(matrix))
     output_matrix = []
 
-    for point in range(0,len(matrix)):
 
-        # Verticles
-        S = []
-
-        # Todo vertices
-        X = [i for i in range(0,len(matrix[0]))]
+    for point in range(len(matrix)):
 
         # Distance
         D =[]
-        for i in range(0,len(matrix[0])):
+        for i in range(0,len(matrix)):
             D.append(np.inf)
         D[point] = 0
 
         # Predecessor
         P = []
-        for i in range(0,len(matrix[0])):
+        for i in range(0,len(matrix)):
             P.append(0)
 
-        while len(S) != len(X):
 
-            x = D.index(min(D))
-            temp = []
+        for i in range(len(matrix)-1):
+            for x in range(len(matrix)):
+                for y in neighbors(x):
+                    if D[y] > D[x] + lengh(x,y):
+                            D[y] =  D[x] + lengh(x,y)
+                            P[y] = x
 
-            if x in S:
-                temp = [D[i] for i in range(0,len(D)) if i not in S]
-
-                # Find all indexes of minimum distance
-                q = [index for index, value in enumerate(D) if value == min(temp)]
-
-                x = int([q[index] for index, value in enumerate(q) if value not in S][0])
-
-            S.append(x)
-
+        # Check if there are negative paths
+        for x in range(len(matrix)):
             for y in neighbors(x):
-                if D[y] >  D[x] + lengh(x,y):
-                    D[y] =  D[x] + lengh(x,y)
-                    P[y] = x
+                assert D[y] <= D[x] + lengh(x,y)
 
         output_matrix.append(D)
 
-
     return output_matrix
 
-
-print(dijkstra(test_matrix))
+print(bellan_ford(test_matrix))
